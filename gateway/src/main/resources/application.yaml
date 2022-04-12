@@ -1,0 +1,29 @@
+server:
+  port: 15001
+
+eureka:
+  instance:
+    hostname: cloud-gateway-service
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:15000/eureka
+
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: userservice
+          uri: http://localhost:16001
+          predicates:
+            - Path=/user/**
+
+
+
