@@ -16,7 +16,6 @@ public class CheckHeaderFilter implements GlobalFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        System.out.println(redisUtil.get("fromGateway"));
         ServerHttpRequest req = exchange.getRequest().mutate()
                 .header("from", "gateway").build();
         // 上游给Token   // auth服务解析Token

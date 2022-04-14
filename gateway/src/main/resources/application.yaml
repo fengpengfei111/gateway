@@ -3,7 +3,7 @@ server:
 
 eureka:
   instance:
-    hostname: cloud-gateway-service
+    hostname: gateway
   client:
     fetch-registry: true
     register-with-eureka: true
@@ -35,10 +35,15 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: userservice
-          uri: http://localhost:16001
+        - id: USERSERVICE
+          #uri: http://localhost:16001
+          uri: lb://userservice
           predicates:
             - Path=/user/**
+
+
+
+
 
 
 
