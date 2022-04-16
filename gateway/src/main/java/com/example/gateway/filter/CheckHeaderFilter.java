@@ -17,7 +17,7 @@ public class CheckHeaderFilter implements GlobalFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest req = exchange.getRequest().mutate()
-                .header("from", "gateway").build();
+                .header("from", redisUtil.get("from").toString()).build();
         // 上游给Token   // auth服务解析Token
         //restTe  Group
         //contains 1  2  3  4  5
